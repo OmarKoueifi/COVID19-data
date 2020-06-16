@@ -7,9 +7,6 @@ import cx from "classnames";
 const Cards = ({
 	totalNumbers: { cases, recovered, critical, deaths, tests, updated, active },
 }) => {
-	//if (!cases) {
-	//	return "Loading...";
-	//}
 	const formatNumber = (num) => {
 		if (isNaN(num)) return "--";
 		return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");

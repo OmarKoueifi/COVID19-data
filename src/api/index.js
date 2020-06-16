@@ -2,7 +2,6 @@ import axios from "axios";
 import { capitalize } from "@material-ui/core";
 
 //Countries
-//const countriesURL = "https://disease.sh/v2/countries";
 const countriesURL = "https://corona.lmao.ninja/v2/countries";
 
 export const countries = async () => {
@@ -14,12 +13,6 @@ export const countries = async () => {
 		console.error(err);
 	}
 };
-
-//////////, {
-//		headers: {
-//			"Access-Control-Allow-Origin": "*",
-//		},
-//	}
 
 //States
 const statesURL = "https://corona.lmao.ninja/v2/states";
@@ -55,12 +48,9 @@ export const counties = async (state) => {
 };
 
 const totalsURL = "https://corona.lmao.ninja/v2/all";
-//const countriesURL = "https://corona.lmao.ninja/v2/countries";
-//const statesURL = "https://corona.lmao.ninja/v2/states";
 const historicalURL = "https://corona.lmao.ninja/v2/historical";
 const usStatesURL = `${historicalURL}/usacounties`;
 const lastDays = "?lastdays=30";
-//const stateCounties = (state) => `${usStatesURL}/${state.toLowerCase()}${lastDays}`;
 
 export const totals = async (country) => {
 	let fullURL = totalsURL;
@@ -97,7 +87,7 @@ export const statesTotals = async (state) => {
 			active: stateData.active,
 			tests: stateData.tests,
 			recovered: "--",
-			updated: stateData.updated, //////////////////////
+			updated: stateData.updated,
 			critical: "--",
 			state: state,
 		};
@@ -118,7 +108,7 @@ export const historical = async (country) => {
 		if (data.timeline) {
 			data = data.timeline;
 		}
-		const date = Object.keys(data.cases); //Array of dates
+		const date = Object.keys(data.cases);
 		const newData = date.map((day) => ({
 			date: day,
 			cases: data.cases[day],
@@ -136,7 +126,7 @@ export const historicalState = async (state) => {
 	const { data } = await axios.get(countiesURL(state));
 	const dateList = Object.keys(data[0].timeline.cases);
 	let newData = [];
-	//change to function to elemenate repeating
+	//Edit
 	dateList.forEach((date) => {
 		const totoalCasesForOneDay = data.reduce((acc, curr) => {
 			return curr.timeline.cases[date] + acc;
@@ -148,14 +138,6 @@ export const historicalState = async (state) => {
 	});
 	return newData;
 };
-
-//export const counties = async (state) => {
-//	const { data } = await axios.get(stateCounties(state));
-//	const listOfCounties = data.map((county) => county.county);
-//	console.log("listOfCounties");
-//	console.log(listOfCounties);
-//	return listOfCounties;
-//};
 
 export const countyTotals = async (state, county) => {
 	try {
@@ -207,26 +189,3 @@ export const countyHistorical = async (state, county) => {
 		console.error(err);
 	}
 };
-
-//export const countries = async () => {
-//	try {
-//		const { data } = await axios.get(countriesURL);
-//		let newData = data.map((country) => country.country);
-//		newData.unshift("Global");
-//		return newData;
-//	} catch (err) {
-//		console.error(err);
-//	}
-//};
-
-//export const states = async () => {
-//	try {
-//		const { data } = await axios.get(statesURL, {
-//			headers: { "Access-Control-Allow-Origin": "*" },
-//		});
-//		const newData = data.map((state) => state.state);
-//		return newData;
-//	} catch (err) {
-//		console.error(err);
-//	}
-//};
