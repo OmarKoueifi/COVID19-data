@@ -1,0 +1,32 @@
+.container {
+	/*margin: 50px 0;*/
+	width: 100%;
+}
+
+.card {
+	margin: 8px 10px !important;
+}
+
+.cases {
+	border-top: 10px solid rgba(255, 0, 29, 0.5);
+}
+
+.tests {
+	border-top: 10px solid rgba(0, 244, 244, 0.5);
+}
+
+.recovered {
+	border-top: 10px solid rgba(0, 244, 85, 0.5);
+}
+
+.critical {
+	border-top: 10px solid rgba(244, 130, 0, 0.5);
+}
+
+.deaths {
+	border-top: 10px solid rgba(137, 0, 16, 0.5);
+}
+
+.active {
+	border-top: 10px solid rgba(222, 220, 57, 0.5);
+}
